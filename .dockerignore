@@ -1,0 +1,17 @@
+#BUILDS
+build/
+dist/
+
+#REPORTS
+coverage/
+*.log*
+
+#MODULES
+node_modules
+
+#SECRETS
+secrets
+.env
+
+#MISC
+.DS_Store

@@ -1,0 +1,295 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./api/tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+
+    "json/sort-package-json": "standard",
+    "json/ignore-files": ["**/package-lock.json"],
+    "json/json-with-comments-files": ["**/tsconfig.json", ".vscode/**"]
+  },
+  "plugins": [
+    "alphabetize",
+    "type-graphql",
+    "notice",
+    "toplevel",
+    "security",
+    "optimize-regex",
+    "sort-destructure-keys",
+    "no-unsanitized",
+    "no-secrets",
+    "sort-class-members",
+    "simple-import-sort",
+    "typescript-sort-keys",
+    "xss",
+    "woke",
+    "json-format",
+
+    "array-func",
+    "sonarjs",
+    "immutable"
+    //"react-hooks",
+    //"no-loops",
+    //"promise",
+    //"sort-keys-fix",
+    //"this",
+    //"filenames",
+  ],
+  "extends": [
+    //"plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript",
+    "plugin:type-graphql/recommended",
+    //"plugin:promise/recommended",
+    "plugin:security/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:array-func/all",
+    "plugin:eslint-comments/recommended",
+    "plugin:compat/recommended",
+    "canonical",
+    //"canonical/jest",
+    "canonical/node",
+    "canonical/react",
+    "canonical/typescript",
+    "plugin:typescript-sort-keys/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    // SECURITY
+    "security/detect-object-injection": "error",
+    "xss/no-mixed-html": "error",
+    "xss/no-location-href-assign": "error",
+    "no-unsanitized/method": "error",
+    "no-unsanitized/property": "error",
+    "no-secrets/no-secrets": [
+      "error",
+      { "ignoreIdentifiers": ["BASE64_VARIABLE"] }
+    ],
+
+    // TOOLS
+    "notice/notice": [
+      "error",
+      {
+        "mustMatch": "Copyright \\(c\\)",
+        "templateFile": "api/secrets/copyright.ts"
+      }
+    ],
+    "alphabetize/_": "error",
+    "woke/all": "error",
+
+    // BOUNDARIES
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "max-lines": [
+      "error",
+      { "max": 120, "skipBlankLines": true, "skipComments": true }
+    ],
+    "max-lines-per-function": [
+      "error",
+      { "max": 60, "skipBlankLines": true, "skipComments": true }
+    ],
+    "max-depth": ["error", 4],
+    "complexity": ["error", 5],
+    "max-nested-callbacks": ["error", 2],
+    "max-params": ["error", 4],
+    "max-statements": ["error", 10],
+    "optimize-regex/optimize-regex": "error",
+    "toplevel/no-toplevel-var": "error",
+    "toplevel/no-toplevel-let": "error",
+    "toplevel/no-toplevel-side-effect": "error",
+    "unicorn/prefer-spread": "error",
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "id-length": [
+      "error",
+      {
+        "min": 4,
+        "max": 24,
+        "exceptions": [
+          "i",
+          "id",
+          "me",
+          "up",
+          "app",
+          "Int",
+          "key",
+          "req",
+          "res",
+          "url"
+        ]
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "error",
+    "import/no-unassigned-import": [
+      "error",
+      { "allow": ["reflect-metadata", "dotenv-safe/config"] }
+    ],
+    "filenames/match-regex": ["error", "^[a-z]{1}[a-zA-Z.]+$"],
+    "filenames/match-exported": "error",
+    "filenames/no-index": "error",
+
+    // ANTI PATTERN
+    "node/no-missing-import": [
+      "error",
+      {
+        "tryExtensions": [".ts", ".tsx", ".js", ".json", ".node"]
+      }
+    ],
+    "fp/no-loops": "error",
+    "unicorn/prefer-negative-index": "error",
+    "no-constant-condition": "error",
+    "no-invalid-this": "error",
+    "no-return-await": "error",
+    "no-unreachable": "error",
+    "immutable/no-let": "warn",
+    "immutable/no-this": "warn",
+    "immutable/no-mutation": "warn",
+    "type-graphql/invalid-nullable-output-type": "off",
+    "type-graphql/invalid-nullable-input-type": "error",
+
+    "eslint-comments/disable-enable-pair": "off",
+    "eslint-comments/no-unused-disable": "warn",
+    "eslint-comments/no-unlimited-disable": "off",
+
+    // STYLISTIC CONSISTENCY
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "never", "prev": "*", "next": "*" },
+      { "blankLine": "any", "prev": "import", "next": "*" },
+      { "blankLine": "any", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": "*", "next": "export" }
+    ],
+    //https://www.npmjs.com/package/eslint-plugin-sort-class-members
+    "sort-class-members/sort-class-members": [
+      2,
+      {
+        "order": [
+          "[static-properties]",
+          "[static-methods]",
+          "[properties]",
+          "[conventional-private-properties]",
+          "constructor",
+          "[methods]",
+          "[conventional-private-methods]"
+        ],
+        "accessorPairPositioning": "getThenSet"
+      }
+    ],
+    "sort-destructure-keys/sort-destructure-keys": [
+      "error",
+      { "caseSensitive": false }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "sort-imports": "off",
+    "import/first": "error",
+    "import/order": "off",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-anonymous-default-export": "error",
+    "import/prefer-default-export": "error",
+    "babel/object-curly-spacing": ["error", "always"],
+    "sort-keys": ["error", "asc", { "caseSensitive": true, "natural": true }],
+    "sort-keys-fix/sort-keys-fix": "error",
+    "sort-vars": "error",
+    "prefer-template": "error",
+    "multiline-ternary": ["error", "always-multiline"],
+    "no-else-return": ["error", { "allowElseIf": false }],
+    "no-extra-boolean-cast": "error",
+    "no-implicit-globals": "error",
+    "prefer-regex-literals": ["error", { "disallowRedundantWrapping": true }],
+    "react/destructuring-assignment": ["error", "always"],
+
+    // DEACTIVATE DUPLICATES
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+
+    // BETTER PRETTIER
+    //"newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
+
+    //API ONLY
+    "no-console": "off",
+    "compat/compat": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/index.ts"],
+      "rules": {
+        "filenames/no-index": "off",
+        "toplevel/no-toplevel-side-effect": "off"
+      }
+    },
+    {
+      "files": ["*/entities/*.ts"],
+      "rules": {
+        "filenames/match-regex": ["error", "^[A-Z]{1}[a-zA-Z]+$"],
+        "fp/no-class": "off",
+        "import/no-cycle": "warn"
+      }
+    },
+    {
+      "files": ["*/migrations/*.ts"],
+      "rules": {
+        "filenames/match-regex": ["error", "^[0-9]+[-]{1}[A-Z]{1}[a-zA-Z]+$"],
+        "fp/no-class": "off",
+        "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
+        "no-secrets/no-secrets": "off"
+      }
+    },
+    {
+      "files": ["*/resolvers/*.ts"],
+      "rules": {
+        "filenames/match-regex": ["error", "^[A-Z]{1}[a-zA-Z]+Resolver$"],
+        "fp/no-class": "off",
+        "class-methods-use-this": "off"
+      }
+    },
+    // {
+    // "files": ["*.tsx", "*.ts", "*.jsx", "*.js"],
+    // "processor": "@graphql-eslint/graphql"
+    // },
+    {
+      "files": ["*/graphql/*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "plugins": ["@graphql-eslint"],
+      "parserOptions": {
+        //"schema": "./schema.graphql",
+        //"operations": ["./src/**/*.graphql"]
+      },
+      "rules": {
+        //"eol-last": "off",
+        //"prettier/prettier": "off",
+        //"@graphql-eslint/avoid-operation-name-prefix": "error",
+        "@graphql-eslint/input-name": "error",
+        "@graphql-eslint/description-style": "error",
+        "@graphql-eslint/naming-convention": "error",
+        "@graphql-eslint/no-anonymous-operations": "error",
+        "@graphql-eslint/require-deprecation-reason": "error",
+        "@graphql-eslint/no-case-insensitive-enum-values-duplicates": "error",
+        "@graphql-eslint/no-operation-name-suffix": "error",
+        "@graphql-eslint/require-id-when-available": "error",
+        "@graphql-eslint/validate-against-schema": "error",
+        "@graphql-eslint/prettier": "error"
+        //"@graphql-eslint/require-description": "error"
+      }
+    }
+  ]
+}
