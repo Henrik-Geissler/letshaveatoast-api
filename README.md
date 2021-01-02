@@ -4,7 +4,6 @@
 Backend of the LET'S HAVE A TOAST App, made with Node.
 
 - See live at: https://letshaveatoast.app/demo
-- See the public App: https://letshaveatoast.app
 - Corresponding Frontend: https://github.com/Henrik-Geissler/letshaveatoast-web
 
 ![alt text](https://letshaveatoast.app/img/media.png)
@@ -34,7 +33,7 @@ yarn
 yarn build
 ```
 
-5. Run on localhost:3000
+5. Run on localhost:4000
 
 ```
 yarn start
